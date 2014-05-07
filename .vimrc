@@ -1,3 +1,4 @@
+set t_Co=256
 colorscheme molokai
 syntax enable
 
@@ -150,4 +151,9 @@ let python_print_as_function=1 " Color 'print' function.
 " FuzzFinder Shorcuts. Using F2 for opening FuzzyFinderTextMate
 map <leader>f :FufFileWithCurrentBufferDir<CR>
 map <leader>m :FufFileWithFullCwd<CR>
-
+let g:rehash256 = 1
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop> 
+set wrap
