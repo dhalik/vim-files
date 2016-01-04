@@ -33,6 +33,7 @@ noremap <Right> <NOP>
 set tabstop=4                   " Tabs are four spaces
 set softtabstop=4               " Tabs counts as four spaces
 set shiftwidth=4                " << >> gives you four spaces
+set textwidth=79
 
 " For those who have the sanity to use 4 spaces
 set smarttab
@@ -138,81 +139,51 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
 
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc
 
-"===================="
-" STOP, Vundle time~ "
-"===================="
+filetype plugin on
+filetype indent on
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Bundle "gmarik/vundle"
+Plugin 'gmarik/Vundle.vim'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'kien/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
-" Utilities
-Bundle "Raimondi/delimitMate"
-Bundle "honza/vim-snippets"
-Bundle "tpope/vim-fugitive"
-Bundle "Lokaltog/vim-easymotion"
-Bundle "scrooloose/nerdcommenter"
-Bundle "bling/vim-airline"
-    let g:airline#extensions#tabline#enabled = 1
-    set laststatus=2
-    set ttimeoutlen=50
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
-" Racket
-Bundle "wlangstroth/vim-racket"
 
-" Haskell
-Bundle "raichoo/haskell-vim"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-" Python
-Bundle "vim-scripts/indentpython.vim"
-Bundle "klen/python-mode"
-let python_highlight_all=1 " Enable all plugin"s highlighting.
-let python_slow_sync=1 " For fast machines.
-let python_print_as_function=1 " Color "print" function.
-let g:syntastic_python_checkers=['pyflakes']
+let python_highlight_all=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:syntastic_python_python_exe = 'python3'
+let g:Powerline_symbols = 'fancy'
 
-" Html
-Bundle "mattn/emmet-vim"
-
-" Universal Syntax Checker + Completion
-Bundle "scrooloose/syntastic"
-
-" Files manager
-Bundle "L9"
-Bundle "vim-scripts/mru.vim"
-Bundle "fholgado/minibufexpl.vim"
-Bundle "FuzzyFinder"
-    " \f and \m lets you search for files
-    map <leader>f :FufFileWithCurrentBufferDir<CR>
-    map <leader>m :FufFileWithFullCwd<CR>
-
-" Directories and tables
-Bundle "jistr/vim-nerdtree-tabs"
-Bundle "scrooloose/nerdtree"
-    nnoremap <Leader>d :NERDTree<CR>
-    " \d shows you the directory tree
-
-" Magical Gundo
-Bundle "sjl/gundo.vim"
-    nnoremap <Leader>u :GundoToggle<CR>
-    " \u shows you the undo history
-
-" LaTeX
-Bundle "jcf/vim-latex"
-
-" Markdown
-Bundle "plasticboy/vim-markdown"
-
-filetype plugin on
-filetype indent on
+set tags=tags;
+set laststatus=2
+autocmd BufNewFile,BufRead *.md set filetype=markdown
