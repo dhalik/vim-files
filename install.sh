@@ -1,8 +1,6 @@
-cp -r `pwd`/colors ~/.vim/colors
-ln -s `pwd`/tmux.conf ~/.tmux.conf
-ln -s `pwd`/vimrc ~/.vimrc
-ln -s `pwd`/xmobarrc ~/.xmobarrc
-ln -s `pwd`/bashrc ~/.bashrc
-ln -s `pwd`/xmonad ~/.xmonad
-sudo apt-get install xmonad suckless-tools tmux python3.4-dev git vim python3 \
-        g++ xmobar exuberant-ctags markdown
+[ -e "~/.vim/colors" ] || ln -s `pwd`/colors ~/.vim/colors
+[ -e "~/.tmux.conf" ] || ln -s `pwd`/tmux.conf ~/.tmux.conf
+[ -e "~/.vimrc" ] || ln -s `pwd`/vimrc ~/.vimrc
+[ -e "~/.xmobarrc" ] || ln -s `pwd`/xmobarrc ~/.xmobarrc
+[ -e "~/.bashrc" ] || ln -s `pwd`/bashrc ~/.bashrc
+[ -e "~/.xmonad/" ] || ln -s `pwd`/xmonad ~/.xmonad

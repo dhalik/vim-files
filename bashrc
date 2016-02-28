@@ -116,6 +116,8 @@ fi
 alias pycharm='wmname LG3D && PYCHARM_JDK=/usr/lib/jvm/java-6-openjdk-amd64 pycharm-community'
 alias android-studio='wmname LG3D && android-studio'
 alias tmux="TERM=screen-256color-bce tmux"
+alias nbstart="(cd ~/git/ipython-notebooks/; nohup jupyter notebook &)"
 
 export IBUS_ENABLE_SYNC_MODE=1
-xrandr --output VGA1 --right-of DP1
+
+# xrandr --output VGA1 --right-of DP1
