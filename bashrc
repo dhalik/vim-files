@@ -121,3 +121,7 @@ alias nbstart="(cd ~/git/ipython-notebooks/; nohup jupyter notebook &)"
 export IBUS_ENABLE_SYNC_MODE=1
 
 # xrandr --output VGA1 --right-of DP1
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/git
+source /usr/local/bin/virtualenvwrapper.sh
