@@ -1,3 +1,4 @@
+mkdir -p ~/.vim
 [ -e "~/.vim/colors" ] || ln -s `pwd`/colors ~/.vim/colors
 [ -e "~/.tmux.conf" ] || ln -s `pwd`/tmux.conf ~/.tmux.conf
 [ -e "~/.vimrc" ] || ln -s `pwd`/vimrc ~/.vimrc

@@ -120,4 +120,36 @@ alias nbstart="(cd ~/git/ipython-notebooks/; nohup jupyter notebook &)"
 
 export IBUS_ENABLE_SYNC_MODE=1
 
+_vim_ctags() {
+    local cur prev
+
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    case "${prev}" in
+        -t)
+            # Avoid the complaint message when no tags file exists
+            if [ ! -r ./tags ]
+            then
+                return
+            fi
+
+            # Escape slashes to avoid confusing awk
+            cur=${cur////\\/}
+
+            COMPREPLY=( $(compgen -W "`awk -v ORS=" "  "/^${cur}/ { print \\$1 }" tags`" ) )
+            ;;
+        *)
+            # Perform usual completion mode
+            ;;
+    esac
+}
+
+# Files matching this pattern are excluded
+excludelist='*.@(o|O|so|SO|so.!(conf)|SO.!(CONF)|a|A|rpm|RPM|deb|DEB|gif|GIF|jp?(e)g|JP?(E)G|mp3|MP3|mp?(e)g|MP?(E)G|avi|AVI|asf|ASF|ogg|OGG|class|CLASS)'
+
+complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim rgview gview
+
 # xrandr --output VGA1 --right-of DP1
+alias start='tmux attach -t base || tmux new -s base'
