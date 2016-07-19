@@ -167,7 +167,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'powerline/powerline'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
