@@ -1,3 +1,4 @@
+sudo apt-get install -y g++ tmux python3.4-dev git vim python3 exuberant-ctags markdown
 sudo apt-get install -y tmux python3.4-dev git vim python3
 sudo apt-get install -y g++ exuberant-ctags markdown
 sudo apt-get install -y python3-numpy

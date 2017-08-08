@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -151,5 +151,9 @@ excludelist='*.@(o|O|so|SO|so.!(conf)|SO.!(CONF)|a|A|rpm|RPM|deb|DEB|gif|GIF|jp?
 complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim rgview gview
 
 # xrandr --output VGA1 --right-of DP1
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/git
+source /usr/local/bin/virtualenvwrapper.sh
 alias start='tmux attach -t base || tmux new -s base'
 alias beep="echo -ne '\007'"
