@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS1='$(RET=$?; if [[ $RET != 0 ]]; then echo "\[\033[00;31m\]$RET "; fi)\[\033[00;35m\]\t ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[00;30m\][$(GIT_HEAD=`git rev-parse --abbrev-ref HEAD 2>/dev/null`; GIT_HEAD_RET=$?; if [[ $GIT_HEAD_RET == 0 ]]; then echo "\[\033[01;36m\]$GIT_HEAD\[\033[00m\] -> "; fi)\[\033[01;34m\]\w\[\033[00;30m\]]\[\033[00m\]\$ '
+	PS1='$(RET=$?; if [[ $RET != 0 ]]; then echo "\[\033[00;31m\]$RET "; fi)\[\033[00;35m\]\t ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[00;30m\][$(GIT_HEAD=`git rev-parse --abbrev-ref HEAD 2>/dev/null`; GIT_HEAD_RET=$?; if [[ $GIT_HEAD_RET == 0 ]]; then echo "\[\033[01;36m\]$GIT_HEAD\[\033[00m\] -> "; fi)\[\033[01;34m\]\W\[\033[00;30m\]]\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -114,7 +114,6 @@ if ! shopt -oq posix; then
 fi
 
 alias pycharm='wmname LG3D && PYCHARM_JDK=/usr/lib/jvm/java-6-openjdk-amd64 pycharm-community'
-alias android-studio='wmname LG3D && android-studio'
 alias tmux="TERM=screen-256color-bce tmux"
 alias nbstart="(cd ~/git/ipython-notebooks/; nohup jupyter notebook &)"
 
@@ -153,3 +152,4 @@ complete -F _vim_ctags -f -X "${excludelist}" vi vim gvim rvim view rview rgvim 
 
 # xrandr --output VGA1 --right-of DP1
 alias start='tmux attach -t base || tmux new -s base'
+alias beep="echo -ne '\007'"

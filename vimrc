@@ -8,23 +8,7 @@ set autoread
 set t_Co=256
 set backspace=indent,eol,start
 set omnifunc=syntaxcomplete#Complete
-
-"==============="
-" HARDCORE MODE "
-"==============="
-
-" FUCK YO SCROLLBARS
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-
-" FUCK YO ARROW KEYS
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
+"
 "============="
 " INDENTATION "
 "============="
@@ -33,7 +17,7 @@ noremap <Right> <NOP>
 set tabstop=4                   " Tabs are four spaces
 set softtabstop=4               " Tabs counts as four spaces
 set shiftwidth=4                " << >> gives you four spaces
-set textwidth=79
+set textwidth=120
 
 " For those who have the sanity to use 4 spaces
 set smarttab
@@ -59,8 +43,7 @@ set so=10                        " set 10 lines to the cursor
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+map <space>a za
 map <C-space> ?
 
 " Smart way to move between windows
@@ -164,10 +147,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'nvie/vim-flake8'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'powerline/powerline'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'tpope/vim-fugitive'
+Plugin 'nvie/vim-flake8'
+
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
@@ -177,16 +163,32 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 let python_highlight_all=1
-let g:ycm_autoclose_preview_window_after_completion=1
-"let g:syntastic_python_python_exe = 'python3'
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
 
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+"python with virtualenv support
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"     project_base_dir = os.environ['VIRTUAL_ENV']
+"     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"     execfile(activate_this, dict(__file__=activate_this))
+" EOF
+
+let g:syntastic_python_python_exe = 'python3'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
 let g:Powerline_symbols = 'fancy'
+let g:flake8_show_in_file=1  " show
 
 set tags=tags;
 set laststatus=2
+set spell spelllang=en_us
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufWritePost *.py call Flake8()
+
